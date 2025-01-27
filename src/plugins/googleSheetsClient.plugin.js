@@ -17,8 +17,13 @@ const __dirname = path.dirname(__filename);
 
 const auth = new google.auth.GoogleAuth({
   
-  keyFile: path.resolve(process.env.GOOGLE_KEY_JSON_PATH),
+  //keyFile: path.resolve(process.env.GOOGLE_KEY_JSON_PATH), //eliminar esta keyFile
 
+  credentials: {
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY.replace(/\\n/g, '\n'),  
+    
+  },
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
